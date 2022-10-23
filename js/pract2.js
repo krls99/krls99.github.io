@@ -1,169 +1,214 @@
-
-let renderer, scene, camera;
+var renderer, scene, camera;
 
 function init() {
-
     renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.setClearColor( new THREE.Color(0xFFFFFF), 1.0 );
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(new THREE.Color(0x0000AA),1.0);
+    document.body.appendChild(renderer.domElement);
+    scene = new THREE.Scene()
+    var aspectRatio = window.innerWidth/window.innerHeight;
 
-    document.body.appendChild( renderer.domElement );
-
-    scene = new THREE.Scene();
-
-    let aspectRatio = window.innerWidth / window.innerHeight;
-    camera = new THREE.PerspectiveCamera( 75, aspectRatio, 0.1, 10000 );
-    camera.position.set( -10, 200, 250 );
-    camera.lookAt( 0, 100, 0 );
-
+    camera = new THREE.PerspectiveCamera(75,aspectRatio,0.1,1000);
+    camera.position.set(90, 200, 350);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 }
 
-function loadRobot() {
+function loadScene() {
 
-    let material = new THREE.MeshBasicMaterial( {color:"red", wireframe: true} );
+    //Practica 2
 
-    let suelo = new THREE.Mesh( new THREE.PlaneGeometry( 1000, 1000, 10, 10 ), material );
-    suelo.position.set(0, 0, 0);
-    suelo.rotation.x = -Math.PI/2;
-    suelo.rotation.z = Math.PI/4;
+    //Creo el nodo del grafo
+    robot = new THREE.Object3D();
+    //todo el robot tendra el siguiente material
+    var material = new THREE.MeshBasicMaterial({ color: 'red', wireframe: true });
+    //cilindro 
+    var  base = new THREE.Mesh( new THREE.CylinderGeometry(50,50,15,32),material);
+    base.position.set(0, 0, 0);
+    //cilindro    
+    var ejeBrazo = new THREE.Mesh(new THREE.CylinderGeometry(20,20,18,32),material);
+    ejeBrazo.rotation.z = Math.PI/2;
+    //esfera
+    var rotula = new THREE.Mesh(new THREE.SphereGeometry(20,30,15),material);
+    rotula.position.set(0,120,0);
+    //Esparrago
+    var esparrago = new THREE.Mesh(new THREE.BoxGeometry(18,120,12),material);
+    esparrago.position.set(0,60,0);
 
-    let baseCilindro = new THREE.Mesh( new THREE.CylinderGeometry( 50, 50, 15, 40 ), material );
+    //cilindro
+    var cilindroAntebrazo = new THREE.Mesh(new THREE.CylinderGeometry(22,22,6,32),material);
 
-    let brazoEsfera = new THREE.Mesh( new THREE.SphereGeometry( 20, 20, 20 ), material );
-    brazoEsfera.position.set(0, 120, 0);
+    var suelo = new THREE.Mesh(new THREE.PlaneGeometry(1000, 1000, 50, 50),material);
+    suelo.rotation.x = -Math.PI / 2;
 
-    let brazoCaja = new THREE.Mesh( new THREE.BoxGeometry( 18, 120, 12 ), material );
-    brazoCaja.position.set(0, 60, 0);
+    //cilindro
+    var cilindroMano = new THREE.Mesh(new THREE.CylinderGeometry(15,15,40),material);
+    cilindroMano.position.set(0,80,0);
+    cilindroMano.rotation.z = Math.PI/2;
+    //Nervios cada uno en una posicion del espacio
+    //Nervio 1
+    var nervio1 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
+    nervio1.position.set(8, 34, -4);
+    //Nervio 2
+    var nervio2 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
+    nervio2.position.set(-8,34,4);
+    //Nervio 3
+    var nervio3 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
+    nervio3.position.set(-8,34,-4);
+    //Nervio 4
+    var nervio4 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
+    nervio4.position.set(8,34,4);
+     
+/*
+    points = []
+    //triangulo 1
+    points.push(new THREE.Vector3(0, 20, 0));
+    points.push(new THREE.Vector3(0, 0, 0));
+    points.push(new THREE.Vector3(19, 0, 0));
+    //triangulo 2
+    points.push(new THREE.Vector3(19, 20, 0));
+    points.push(new THREE.Vector3(0, 20, 0));
+    points.push(new THREE.Vector3(19, 0, 0));
+    //triangulo 3
+    points.push(new THREE.Vector3(0, 20, 0));
+    points.push(new THREE.Vector3(0, 0, 4));
+    points.push(new THREE.Vector3(19, 0, 4));
+    // triangulo 4
+    points.push(new THREE.Vector3(19, 20, 4));
+    points.push(new THREE.Vector3(0, 20, 4));
+    points.push(new THREE.Vector3(19, 0, 4));
+    // triangulo 5
+    points.push(new THREE.Vector3(0, 20, 0));
+    points.push(new THREE.Vector3(19, 20, 0));
+    points.push(new THREE.Vector3(19, 20, 4));
+    // triangulo 6
+    points.push(new THREE.Vector3(0, 20, 4));
+    points.push(new THREE.Vector3(0, 20, 0));
+    points.push(new THREE.Vector3(19, 20, 4));
+    // triangulo 7
+    points.push(new THREE.Vector3(0, 0, 0));
+    points.push(new THREE.Vector3(19, 0, 0));
+    points.push(new THREE.Vector3(19, 0, 4));
+    // triangulo 8
+    points.push(new THREE.Vector3(0, 0, 4));
+    points.push(new THREE.Vector3(0, 0, 0));
+    points.push(new THREE.Vector3(19, 0, 4));
+    //triangulo 9
+    points.push(new THREE.Vector3(19, 0, 0));
+    points.push(new THREE.Vector3(19, 20, 0));
+    points.push(new THREE.Vector3(38, 0, 1));
+    //triangulo 10
+    points.push(new THREE.Vector3(19, 20, 0));
+    points.push(new THREE.Vector3(38, 10, 1));
+    points.push(new THREE.Vector3(38, 0, 1));
+    //triangulo 11
+    points.push(new THREE.Vector3(19, 0, 4));
+    points.push(new THREE.Vector3(19, 20, 4));
+    points.push(new THREE.Vector3(38, 0, 3));
+    //triangulo 12
+    points.push(new THREE.Vector3(19, 20, 4));
+    points.push(new THREE.Vector3(38, 10, 3));
+    points.push(new THREE.Vector3(38, 0, 3));
+    //triangulo 13
+    points.push(new THREE.Vector3(38, 0, 1));
+    points.push(new THREE.Vector3(38, 0, 3));
+    points.push(new THREE.Vector3(38, 10, 3));
+    //triangulo 14
+    points.push(new THREE.Vector3(38, 0, 1));
+    points.push(new THREE.Vector3(38, 10, 3));
+    points.push(new THREE.Vector3(38, 10, 1));
+  
+    let geometry = new THREE.BufferGeometry().setFromPoints(points)
+*/
 
-    let brazoCilindro = new THREE.Mesh( new THREE.CylinderGeometry( 20, 20, 18, 40 ), material );
-    brazoCilindro.rotation.x = Math.PI/2;
-    brazoCilindro.rotation.z = Math.PI/5;
-
-    let antebrazoCilindro = new THREE.Mesh( new THREE.CylinderGeometry( 15, 15, 40, 40 ), material );
-    antebrazoCilindro.position.set(0, 200, 0);
-    antebrazoCilindro.rotation.x = Math.PI/2;
-    antebrazoCilindro.rotation.z = Math.PI/5;
-
-    let antebrazoNervioGeometria = new THREE.BoxGeometry( 4, 80, 4 );
-
-    let antebrazoNervio1 = new THREE.Mesh( antebrazoNervioGeometria, material );
-    antebrazoNervio1.position.set(4, 160, 4);
-
-    let antebrazoNervio2 = new THREE.Mesh( antebrazoNervioGeometria, material );
-    antebrazoNervio2.position.set(4, 160, -4);
-
-    let antebrazoNervio3 = new THREE.Mesh( antebrazoNervioGeometria, material );
-    antebrazoNervio3.position.set(-4, 160, 4);
-
-    let antebrazoNervio4 = new THREE.Mesh( antebrazoNervioGeometria, material );
-    antebrazoNervio4.position.set(-4, 160, -4);
-
-    let antebrazoBase = new THREE.Mesh( new THREE.CylinderGeometry( 22, 22, 6, 40 ), material );
-    antebrazoBase.position.set(0, 120, 0);
-
-    let pinzas_coordenadas = [
-        0, 0, 0,
-        0, 0, 4,
-        0, 20, 0,
-        0, 20, 4,
-        19, 0, 0,
-        19, 0, 4,
-        19, 20, 0,
-        19, 20, 4,
-        38, 3, 0,
-        38, 3, 2,
-        38, 17, 0,
-        38, 17, 2
+    var pinza = new THREE.BufferGeometry();
+    
+    const vertex = [
+        0, -8, -10,
+        19, -8, -10,
+        0, -8, 10,
+        19, -8, 10,
+        0, -12, -10,
+        19, -12, -10,
+        0, -12, 10,
+        19, -12, 10,
+        38, -8, -5,
+        38, -12, -5,
+        38, -8, 5,
+        38, -12, 5
+    ];
+    
+    indices = [
+        0, 3, 2,
+        0, 1, 3,
+        1, 7, 3,
+        1, 5, 7,
+        5, 6, 7,
+        5, 4, 6,
+        4, 2, 6,
+        4, 0, 2,
+        2, 7, 6,
+        2, 3, 7,
+        4, 1, 0,
+        4, 5, 1,
+        1, 10, 3,
+        1, 8, 10,
+        8, 11, 10,
+        8, 9, 11,
+        9, 7, 11,
+        9, 5, 7,
+        3, 11, 7,
+        3, 10, 11,
+        5, 8, 1,
+        5, 9, 8
     ];
 
-    let pinzas_indices = [
-        0,2,1, 0,3,2,
-        0,2,6, 0,6,4,
-        0,1,4, 0,5,4,
-        7,6,3, 7,2,3,
-        7,5,1, 7,5,3,
-        7,11,10, 7,10,6,
-        7,11,9, 7,9,5,
-        8,4,5, 8,5,9,
-        8,10,11, 8,11,9,
-        8,4,6, 8,6,10
-    ]
+    pinza.setIndex(indices);
+    pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
 
-    let pinza1_geometry = new THREE.Geometry();
+    var pinzaIz = new THREE.Mesh(pinza, material);
+    pinzaIz.rotation.y = Math.PI / 2;  
 
-    for (let i = 0; i < pinzas_coordenadas.length; i += 3) {
-        let vertice = new THREE.Vector3( pinzas_coordenadas[i], pinzas_coordenadas[i+1], pinzas_coordenadas[i+2] );
-        pinza1_geometry.vertices.push( vertice );
-    }
+    var pinzaDe = new THREE.Mesh(pinza, material);
+    pinzaDe.rotation.y = Math.PI / 2;
+    pinzaDe.position.set(0, 20, 0);
 
-    for (let i = 0; i < pinzas_indices.length; i += 3) {
-        let triangulo = new THREE.Face3( pinzas_indices[i], pinzas_indices[i+1], pinzas_indices[i+2] );
-        pinza1_geometry.faces.push(triangulo);
-    }
+    //MANO
+    cilindroMano.add(pinzaIz);
+    cilindroMano.add(pinzaDe);
 
-    let pinza1 = new THREE.Mesh( pinza1_geometry, material );
-    pinza1.position.set( 0, 190, 20 );
-    pinza1.rotation.y = -Math.PI/4;
+    //ANTEBRAZO
+    objetoAntebrazo = new THREE.Object3D();
+    objetoAntebrazo.add(cilindroAntebrazo);
+    objetoAntebrazo.add(cilindroMano);
+    objetoAntebrazo.add(nervio1);
+    objetoAntebrazo.add(nervio2);
+    objetoAntebrazo.add(nervio3);
+    objetoAntebrazo.add(nervio4);
+    //subo ese cilindro
+    objetoAntebrazo.position.set(0,120,0);
+   
+    //BRAZO
+    objetoBrazo = new THREE.Object3D();
+    objetoBrazo.add(ejeBrazo);
+    objetoBrazo.add(rotula);
+    objetoBrazo.add(esparrago);
+    objetoBrazo.add(objetoAntebrazo);
 
-    let pinza2 = new THREE.Mesh( pinza1_geometry, material );
-    pinza2.position.set( 20, 190, -10 );
-    pinza2.rotation.y = -Math.PI/4;
-
-    let robot = new THREE.Object3D();
-    let base = new THREE.Object3D();
-    let brazo = new THREE.Object3D();
-    let antebrazo = new THREE.Object3D();
-    let mano = new THREE.Object3D();
-
-    robot.add(base);
-
-    base.add(baseCilindro);
-    base.add(brazo);
-
-    brazo.add(brazoEsfera);
-    brazo.add(brazoCaja);
-    brazo.add(brazoCilindro);
-    brazo.add(antebrazo);
-
-    antebrazo.add(antebrazoNervio1);
-    antebrazo.add(antebrazoNervio2);
-    antebrazo.add(antebrazoNervio3);
-    antebrazo.add(antebrazoNervio4);
-    antebrazo.add(antebrazoBase);
-    antebrazo.add(mano);
-
-    mano.add(antebrazoCilindro);
-    mano.add(pinza1);
-    mano.add(pinza2);
-
-    robot.position.set( 0, 0, 0 );
-
-    //const axesHelper = new THREE.AxesHelper( 500 );
-    //scene.add( axesHelper );
-
-    //const controls = new THREE.OrbitControls( camera, renderer.domElement );
-    //controls.target.copy(robot.position);
-    //controls.update();
-
-    scene.add(suelo);
-    scene.add(robot);
-
-}
-
-let antes = Date.now();
-let angulo = 0;
-
-function update() {
+    //GRAFO DE ESCENA
+    robot.add(base)
+    base.add(objetoBrazo)
+    scene.add(robot)
+    scene.add(suelo)
+    scene.add(new THREE.AxesHelper(1000));
+    
 }
 
 function render() {
-
-    requestAnimationFrame( render );
-    update();
-    renderer.render( scene, camera );
-
+    requestAnimationFrame(render);
+    //update();
+    renderer.render(scene,camera);
 }
 
 init();
-loadRobot();
+loadScene();
 render();
