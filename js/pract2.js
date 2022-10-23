@@ -6,9 +6,7 @@ function init() {
     renderer.setClearColor(new THREE.Color(0x0000AA),1.0);
     document.body.appendChild(renderer.domElement);
     scene = new THREE.Scene()
-    var aspectRatio = window.innerWidth/window.innerHeight;
-
-    camera = new THREE.PerspectiveCamera(75,aspectRatio,0.1,1000);
+    camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
     camera.position.set(90, 200, 350);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 }
@@ -20,7 +18,7 @@ function loadScene() {
     //Creo el nodo del grafo
     robot = new THREE.Object3D();
     //todo el robot tendra el siguiente material
-    var material = new THREE.MeshBasicMaterial({ color: 'red', wireframe: true });
+    var material = new THREE.MeshBasicMaterial({ color: 'blue', wireframe: true });
     //cilindro 
     var  base = new THREE.Mesh( new THREE.CylinderGeometry(50,50,15,32),material);
     base.position.set(0, 0, 0);
@@ -57,68 +55,6 @@ function loadScene() {
     //Nervio 4
     var nervio4 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
     nervio4.position.set(8,34,4);
-     
-/*
-    points = []
-    //triangulo 1
-    points.push(new THREE.Vector3(0, 20, 0));
-    points.push(new THREE.Vector3(0, 0, 0));
-    points.push(new THREE.Vector3(19, 0, 0));
-    //triangulo 2
-    points.push(new THREE.Vector3(19, 20, 0));
-    points.push(new THREE.Vector3(0, 20, 0));
-    points.push(new THREE.Vector3(19, 0, 0));
-    //triangulo 3
-    points.push(new THREE.Vector3(0, 20, 0));
-    points.push(new THREE.Vector3(0, 0, 4));
-    points.push(new THREE.Vector3(19, 0, 4));
-    // triangulo 4
-    points.push(new THREE.Vector3(19, 20, 4));
-    points.push(new THREE.Vector3(0, 20, 4));
-    points.push(new THREE.Vector3(19, 0, 4));
-    // triangulo 5
-    points.push(new THREE.Vector3(0, 20, 0));
-    points.push(new THREE.Vector3(19, 20, 0));
-    points.push(new THREE.Vector3(19, 20, 4));
-    // triangulo 6
-    points.push(new THREE.Vector3(0, 20, 4));
-    points.push(new THREE.Vector3(0, 20, 0));
-    points.push(new THREE.Vector3(19, 20, 4));
-    // triangulo 7
-    points.push(new THREE.Vector3(0, 0, 0));
-    points.push(new THREE.Vector3(19, 0, 0));
-    points.push(new THREE.Vector3(19, 0, 4));
-    // triangulo 8
-    points.push(new THREE.Vector3(0, 0, 4));
-    points.push(new THREE.Vector3(0, 0, 0));
-    points.push(new THREE.Vector3(19, 0, 4));
-    //triangulo 9
-    points.push(new THREE.Vector3(19, 0, 0));
-    points.push(new THREE.Vector3(19, 20, 0));
-    points.push(new THREE.Vector3(38, 0, 1));
-    //triangulo 10
-    points.push(new THREE.Vector3(19, 20, 0));
-    points.push(new THREE.Vector3(38, 10, 1));
-    points.push(new THREE.Vector3(38, 0, 1));
-    //triangulo 11
-    points.push(new THREE.Vector3(19, 0, 4));
-    points.push(new THREE.Vector3(19, 20, 4));
-    points.push(new THREE.Vector3(38, 0, 3));
-    //triangulo 12
-    points.push(new THREE.Vector3(19, 20, 4));
-    points.push(new THREE.Vector3(38, 10, 3));
-    points.push(new THREE.Vector3(38, 0, 3));
-    //triangulo 13
-    points.push(new THREE.Vector3(38, 0, 1));
-    points.push(new THREE.Vector3(38, 0, 3));
-    points.push(new THREE.Vector3(38, 10, 3));
-    //triangulo 14
-    points.push(new THREE.Vector3(38, 0, 1));
-    points.push(new THREE.Vector3(38, 10, 3));
-    points.push(new THREE.Vector3(38, 10, 1));
-  
-    let geometry = new THREE.BufferGeometry().setFromPoints(points)
-*/
 
     var pinza = new THREE.BufferGeometry();
     
@@ -185,7 +121,7 @@ function loadScene() {
     objetoAntebrazo.add(nervio3);
     objetoAntebrazo.add(nervio4);
     //subo ese cilindro
-    objetoAntebrazo.position.set(0,120,0);
+    objetoAntebrazo.position.y = 120;
    
     //BRAZO
     objetoBrazo = new THREE.Object3D();
@@ -199,7 +135,7 @@ function loadScene() {
     base.add(objetoBrazo)
     scene.add(robot)
     scene.add(suelo)
-    scene.add(new THREE.AxesHelper(1000));
+    scene.add(new THREE.AxesHelper(100));
     
 }
 
