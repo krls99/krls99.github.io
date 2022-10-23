@@ -18,7 +18,7 @@ function loadScene() {
     //Creo el nodo del grafo
     robot = new THREE.Object3D();
     //todo el robot tendra el siguiente material
-    var material = new THREE.MeshBasicMaterial({ color: 'blue', wireframe: true });
+    var material = new THREE.MeshBasicMaterial({ color: 'green', wireframe: true });
     //cilindro 
     var  base = new THREE.Mesh( new THREE.CylinderGeometry(50,50,15,32),material);
     base.position.set(0, 0, 0);
@@ -59,43 +59,41 @@ function loadScene() {
     var pinza = new THREE.BufferGeometry();
     
     const vertex = [
-        0, -8, -10,
-        19, -8, -10,
-        0, -8, 10,
-        19, -8, 10,
-        0, -12, -10,
-        19, -12, -10,
-        0, -12, 10,
-        19, -12, 10,
-        38, -8, -5,
-        38, -12, -5,
-        38, -8, 5,
-        38, -12, 5
+        0, 0, 0,
+        0, 0, 4,
+        0, 20, 0,
+        0, 20, 4,
+        19, 0, 0,
+        19, 0, 4,
+        19, 20, 0,
+        19, 20, 4,
+        38, 3, 0,
+        38, 3, 2,
+        38, 17, 0,
+        38, 17, 2
     ];
     
     indices = [
-        0, 3, 2,
-        0, 1, 3,
-        1, 7, 3,
-        1, 5, 7,
-        5, 6, 7,
-        5, 4, 6,
-        4, 2, 6,
-        4, 0, 2,
-        2, 7, 6,
-        2, 3, 7,
-        4, 1, 0,
-        4, 5, 1,
-        1, 10, 3,
-        1, 8, 10,
-        8, 11, 10,
-        8, 9, 11,
-        9, 7, 11,
-        9, 5, 7,
-        3, 11, 7,
-        3, 10, 11,
-        5, 8, 1,
-        5, 9, 8
+        0,2,1, 
+        0,3,2,
+        0,2,6, 
+        0,6,4,
+        0,1,4, 
+        0,5,4,
+        7,6,3, 
+        7,2,3,
+        7,5,1, 
+        7,5,3,
+        7,11,10, 
+        7,10,6,
+        7,11,9, 
+        7,9,5,
+        8,4,5, 
+        8,5,9,
+        8,10,11, 
+        8,11,9,
+        8,4,6, 
+        8,6,10
     ];
 
     pinza.setIndex(indices);
@@ -135,7 +133,6 @@ function loadScene() {
     base.add(objetoBrazo)
     scene.add(robot)
     scene.add(suelo)
-    //scene.add(new THREE.AxesHelper(100));
     
 }
 
