@@ -3,7 +3,7 @@ var renderer, scene, camera;
 function init() {
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(new THREE.Color(0x0000AA),1.0);
+    renderer.setClearColor(new THREE.Color(0xFFFFFF),1.0);
     document.body.appendChild(renderer.domElement);
     scene = new THREE.Scene()
     camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
@@ -135,7 +135,7 @@ function loadScene() {
     base.add(objetoBrazo)
     scene.add(robot)
     scene.add(suelo)
-    scene.add(new THREE.AxesHelper(100));
+    //scene.add(new THREE.AxesHelper(100));
     
 }
 
