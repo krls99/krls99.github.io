@@ -7,7 +7,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
     scene = new THREE.Scene()
     camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-    camera.position.set(-100, 200, 350);
+    camera.position.set(-170, 200, 350);
     camera.lookAt(new THREE.Vector3(0, 100, 0));
 }
 
@@ -99,7 +99,7 @@ function loadScene() {
     pinzaIz.rotation.x = -Math.PI / 2;  
 
     var pinzaDe = new THREE.Mesh(pinza, material);
-    pinzaDe.rotation.x = - Math.PI / 4;
+    pinzaDe.rotation.y = - Math.PI / 2;
     pinzaDe.position.set(0, 20, 0);
 
     //MANO
