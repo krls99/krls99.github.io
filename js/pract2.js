@@ -29,28 +29,28 @@ function loadScene() {
     var esparrago = new THREE.Mesh(new THREE.BoxGeometry(18,120,12),material);
     esparrago.position.set(0,60,0);
 
-    var cilindroAntebrazo = new THREE.Mesh(new THREE.CylinderGeometry(15,15,40,20),material);
+    var cilindroAntebrazo = new THREE.Mesh(new THREE.CylinderGeometry(22,22,6,20),material);
 
     var suelo = new THREE.Mesh(new THREE.PlaneGeometry(1000, 1000, 50, 50),material);
     suelo.rotation.x = -Math.PI / 2;
 
     //cilindro
     var cilindroMano = new THREE.Mesh(new THREE.CylinderGeometry(15,15,40),material);
-    cilindroMano.position.set(0,200,0);
+    cilindroMano.position.set(0,80,0);
     cilindroMano.rotation.z = Math.PI/2;
     //Nervios cada uno en una posicion del espacio
     //Nervio 1
     var nervio1 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
-    nervio1.position.set(4, 160, -4);
+    nervio1.position.set(4, 34, -4);
     //Nervio 2
     var nervio2 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
-    nervio2.position.set(-4,160,4);
+    nervio2.position.set(-4,34,4);
     //Nervio 3
     var nervio3 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
-    nervio3.position.set(-4,160,-4);
+    nervio3.position.set(-4,34,-4);
     //Nervio 4
     var nervio4 = new THREE.Mesh(new THREE.BoxGeometry(4,80,4),material);
-    nervio4.position.set(4,160,4);
+    nervio4.position.set(4,34,4);
 
     var pinza = new THREE.BufferGeometry();
     
@@ -100,7 +100,7 @@ function loadScene() {
 
     var pinzaDe = new THREE.Mesh(pinza, material);
     pinzaDe.rotation.y = Math.PI / 2;
-    pinzaDe.position.set(0, 120, 0);
+    pinzaDe.position.set(0, 20, 0);
 
     //MANO
     cilindroMano.add(pinzaIz);
