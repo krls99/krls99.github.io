@@ -96,11 +96,11 @@ function loadScene() {
     pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
 
     var pinzaIz = new THREE.Mesh(pinza, material);
-    pinzaIz.rotation.y = Math.PI / 2;  
+    pinzaIz.rotation.z = Math.PI / 2;  
 
     var pinzaDe = new THREE.Mesh(pinza, material);
-    pinzaDe.rotation.y = - Math.PI / 2;
-    pinzaDe.position.set(0, -20, 0);
+    pinzaDe.rotation.z = - Math.PI / 4;
+    pinzaDe.position.set(0, -120, 0);
 
     //MANO
     cilindroMano.add(pinzaIz);
