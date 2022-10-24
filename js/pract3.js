@@ -139,7 +139,7 @@ function loadScene() {
     //pinza.setAttribute('position', new THREE.Float32BufferAttribute(indices,3));
     //pinza.computeVertexNormals();
     
-    pinza.setFromPoints(indices);
+    pinza.setIndex(indices);
     pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
     pinza.computeVertexNormals();
 
