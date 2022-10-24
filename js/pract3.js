@@ -140,10 +140,10 @@ function loadScene() {
 
     var pinzaIz = new THREE.Mesh(pinza, material);
     pinzaIz.rotation.z = -Math.PI / 2;  
-    pinzaIz.position.set(0,-10,0);
+    pinzaIz.position.set(-5,-10,0);
     var pinzaDe = new THREE.Mesh(pinza, material);
     pinzaDe.rotation.z = - Math.PI / 2;
-    pinzaDe.position.set(0, 10, 0);
+    pinzaDe.position.set(-10, 13, 0);
 
     //MANO
     cilindroMano.add(pinzaIz);
