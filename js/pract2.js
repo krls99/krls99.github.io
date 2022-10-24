@@ -55,51 +55,51 @@ function loadScene() {
     var pinza = new THREE.BufferGeometry();
     
     const vertex = [
-        0, 0, 0,
-        0, 0, 4,
-        0, 20, 0,
-        0, 20, 4,
-        19, 0, 0,
-        19, 0, 4,
-        19, 20, 0,
-        19, 20, 4,
-        38, 3, 0,
-        38, 3, 2,
-        38, 17, 0,
-        38, 17, 2
+        0,0,0,
+        4,0,0,
+        4,20,0,
+        0,20,0,
+        4,20,19,
+        0,20,19,
+        4,0,19,
+        0,0,19,
+        2,15,38,
+        0,15,38,
+        2,7,38,
+        0,7,38
     ];
     
     indices = [
-        0,2,1, 
-        0,3,2,
-        0,2,6, 
-        0,6,4,
-        0,1,4, 
-        0,5,4,
-        7,6,3, 
-        7,2,3,
-        7,5,1, 
-        7,5,3,
-        7,11,10, 
-        7,10,6,
-        7,11,9, 
-        7,9,5,
-        8,4,5, 
-        8,5,9,
-        8,10,11, 
-        8,11,9,
-        8,4,6, 
-        8,6,10
+        4,2,3,
+        5,4,3,
+        3,2,0,
+        2,1,0,
+        2,4,1,
+        4,6,1,
+        5,3,7,
+        3,0,7,
+        0,1,7,
+        1,6,7,
+        5,4,9,
+        4,8,9,
+        5,9,7,
+        9,11,7,
+        4,10,8,
+        4,6,10,
+        6,7,10,
+        7,11,10,
+        11,9,8,
+        11,8,10
     ];
 
     pinza.setIndex(indices);
     pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
 
     var pinzaIz = new THREE.Mesh(pinza, material);
-    pinzaIz.rotation.z = -Math.PI / 2;  
+    pinzaIz.rotation.y = -Math.PI / 2;  
 
     var pinzaDe = new THREE.Mesh(pinza, material);
-    pinzaDe.rotation.z = - Math.PI / 2;
+    pinzaDe.rotation.y = - Math.PI / 2;
     pinzaDe.position.set(0, -120, 0);
 
     //MANO
@@ -131,11 +131,13 @@ function loadScene() {
     scene.add(suelo)
     
 }
+function update(){
+}
 
-function render() {
-    requestAnimationFrame(render);
-    //update();
-    renderer.render(scene,camera);
+function render(){
+    requestAnimationFrame( render );
+    update();
+    renderer.render( scene, camera );
 }
 
 init();
