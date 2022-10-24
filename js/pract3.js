@@ -144,6 +144,7 @@ function loadScene() {
     
     pinza.setFromPoints(indices);
     pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
+    pinza.computeVertexNormals();
 
     var pinzaIz = new THREE.Mesh(pinza, material);
     pinzaIz.rotation.z = -Math.PI / 2;  
