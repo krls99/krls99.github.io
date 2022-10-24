@@ -3,7 +3,7 @@ var renderer, scene, camera, mini_camera, robot, cameraControls;
 function init(){
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.setClearColor ( new THREE.Color(0x0000AA), 1.0);
+    renderer.setClearColor ( new THREE.Color(0xFFFFFF), 1.0);
     document.body.appendChild( renderer.domElement);
     renderer.autoClear = false;
 
