@@ -97,22 +97,28 @@ function loadScene() {
 
     var pinza = new THREE.BufferGeometry();
     
-    const vertex = [
-        0,0,0,
-        4,0,0,
-        4,20,0,
-        0,20,0,
-        4,20,19,
-        0,20,19,
-        4,0,19,
-        0,0,19,
-        2,15,38,
-        0,15,38,
-        2,7,38,
-        0,7,38
+    //const 
+    vertex = [
+        new THREE.Vector3(0,0,0),
+        new THREE.Vector3(4,0,0),
+        new THREE.Vector3(4,20,0),
+
+        new THREE.Vector3( 0,20,0),
+        new THREE.Vector3(4,20,19),
+        new THREE.Vector3(0,20,19),
+
+        new THREE.Vector3(4,0,19),
+        new THREE.Vector3(0,0,19),
+        new THREE.Vector3(2,15,38),
+
+        new THREE.Vector3(0,15,38),
+        new THREE.Vector3(2,7,38),
+        new THREE.Vector3(0,7,38),
+
     ];
     
-    indices = [
+    indices = new Float32Array(
+        [
         4,2,3,
         5,4,3,
         3,2,0,
@@ -135,13 +141,13 @@ function loadScene() {
         11,8,10
     ];
 
-    //pinza.setFromPoints(vertex);
-    //pinza.setAttribute('position', new THREE.Float32BufferAttribute(indices,3));
-    //pinza.computeVertexNormals();
-    
-    pinza.setIndex(indices);
-    pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
+    pinza.setFromPoints(vertex)
+    pinza.setAttribute( 'normal', new THREE.BufferAttribute( indices, 3 ) );
     pinza.computeVertexNormals();
+    
+    //pinza.setIndex(indices);
+    //pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
+    //pinza.computeVertexNormals();
 
     var pinzaIz = new THREE.Mesh(pinza, material);
     pinzaIz.rotation.z = -Math.PI / 2;  
