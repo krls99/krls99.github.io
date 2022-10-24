@@ -138,9 +138,12 @@ function loadScene() {
         11,8,10
     ];
 
-    pinza.setFromPoints(vertex);
-    pinza.setAttribute('position', new THREE.Float32BufferAttribute(indices,3));
-    pinza.computeVertexNormals();
+    //pinza.setFromPoints(vertex);
+    //pinza.setAttribute('position', new THREE.Float32BufferAttribute(indices,3));
+    //pinza.computeVertexNormals();
+    
+    pinza.setIndex(indices);
+    pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
 
     var pinzaIz = new THREE.Mesh(pinza, material);
     pinzaIz.rotation.z = -Math.PI / 2;  
