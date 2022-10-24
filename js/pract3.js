@@ -26,7 +26,7 @@ function init(){
 }
 
 function setMiniCamera(){
-    var L = 170;
+    var L = 150;
     var camaraOrtografica;
 
     // VIEWPORT MÁS ANCHO QUE ALTO
@@ -140,10 +140,10 @@ function loadScene() {
 
     var pinzaIz = new THREE.Mesh(pinza, material);
     pinzaIz.rotation.z = -Math.PI / 2;  
-    pinzaIz.position.set(-5,-10,0);
+    pinzaIz.position.set(-10,-10,0);
     var pinzaDe = new THREE.Mesh(pinza, material);
     pinzaDe.rotation.z = - Math.PI / 2;
-    pinzaDe.position.set(-10, 13, 0);
+    pinzaDe.position.set(-10, 15, 0);
 
     //MANO
     cilindroMano.add(pinzaIz);
