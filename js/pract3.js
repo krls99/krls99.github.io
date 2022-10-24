@@ -118,7 +118,7 @@ function loadScene() {
     ];
     
     indices = new Float32Array(
-        [
+    [
         4,2,3,
         5,4,3,
         3,2,0,
@@ -139,7 +139,7 @@ function loadScene() {
         7,11,10,
         11,9,8,
         11,8,10
-    ];
+    ]);
 
     pinza.setFromPoints(vertex)
     pinza.setAttribute( 'normal', new THREE.BufferAttribute( indices, 3 ) );
