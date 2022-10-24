@@ -26,7 +26,7 @@ function init(){
 }
 
 function setMiniCamera(){
-    var L = 120;
+    var L = 250;
     var camaraOrtografica;
 
     // VIEWPORT MÁS ANCHO QUE ALTO
