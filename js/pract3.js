@@ -142,7 +142,7 @@ function loadScene() {
     //pinza.setAttribute('position', new THREE.Float32BufferAttribute(indices,3));
     //pinza.computeVertexNormals();
     
-    pinza.setIndex(indices);
+    pinza.setFromPoints(indices);
     pinza.setAttribute('position', new THREE.Float32BufferAttribute(vertex,3));
 
     var pinzaIz = new THREE.Mesh(pinza, material);
