@@ -138,7 +138,7 @@ function loadScene() {
         11,8,10
     ]);
 
-    pinza.setFromPoints(vertex)
+    pinza.setIndex(vertex)
     pinza.setAttribute( 'normal', new THREE.BufferAttribute( indices, 3 ) );
     pinza.computeVertexNormals();
     
