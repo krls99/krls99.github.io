@@ -58,7 +58,7 @@ function loadScene() {
 
     robot = new THREE.Object3D();
 
-    var material = new THREE.MeshBasicMaterial({ color: 'green', wireframe: true });
+    var material = new THREE.MeshBasicMaterial({ color: 'green', wireframe: false, flatShading: false });
 
     var  base = new THREE.Mesh( new THREE.CylinderGeometry(50,50,15,20),material);
     base.position.set(0, 0, 0);
